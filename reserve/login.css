@@ -1,0 +1,12 @@
+@charset "UTf-8";
+
+body{background-color: rgb(246, 229, 172);}
+h1{
+    color:red;
+    font-size:30px;
+    text-shadow: 2px;
+    border: 2px;
+    border-color: black;
+    text-align:center;
+}
+
