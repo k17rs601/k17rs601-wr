@@ -1,0 +1,25 @@
+/* ul, ol {
+    padding: 5;
+    position: relative; 
+} */
+  
+ul li, ol li {
+  font-size: 20px;
+  color: black;
+  border-left: solid 16px orange;/*左側の線*/
+  border-left: solid 14px rgb(241, 157, 0);
+  background: whitesmoke;/*背景色 */
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  border-radius: 0 10px 10px 0;/*右側の角だけ丸く*/
+  padding: 0.5em;
+  list-style-type: none!important;
+}
+
+.txt1{
+  padding-left: 10px;
+  font-size:20px;
+  width:100em;
+  max-width:75%;
+  padding:0.8em;
+}

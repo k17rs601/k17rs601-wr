@@ -1,6 +1,9 @@
 @charset "UTf-8";
 
-body{background-color: rgb(246, 229, 172);}
+body{
+    background-color: rgba(246, 239, 172, 0.723);text-align:center
+}
+
 h1{
     color:red;
     font-size:30px;
@@ -9,4 +12,20 @@ h1{
     border-color: black;
     text-align:center;
 }
+.subm{
+    width: 100px;
 
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #68779a;
+    background: whitesmoke;
+    cursor: pointer;
+    color: black;
+}
+ .login{
+    padding: 10px;
+    box-sizing: border-box;
+    background: azure;
+    border: 1px solid #68779a;
+
+} 
