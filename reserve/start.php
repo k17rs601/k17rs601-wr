@@ -10,7 +10,9 @@
 
   <body>
     <?php
-    
+    $con = mysqli_connect('localhost','root','','FAMIs');
+
+    $rezu = mysqli_query($con,"FAMIs");
     ?>
     <h3>現在の順番の待ち組数</h3>
     <div style="font-size:20px; text-align:center">
