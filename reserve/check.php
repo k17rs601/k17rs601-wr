@@ -7,7 +7,8 @@
     <?php
         $uid = $_POST['uid'];
         $pass = $_POST['pass'];
-        $sql = "SELECT * FROM tbl_user WHERE uid='{$uid}' AND upass='{$pass}'";
+        $sql = "SELECT uid , upass FROM tbl_user WHERE uid='{$uid}' AND upass='{$pass}'";
+        $sql1 = "SELECT emael , upass FROM tbl_user WHERE email ='{$uid}' AND upass='{$pass}'";
 
         $conn = new mysqli("localhost","root","","FAMIs");//MySQLサーバへ接続
         if($conn->connect_errno){
@@ -15,7 +16,7 @@
         }
         $conn->set_charset('utf8');
 
-        $rs = $conn->query($sql);//SQL文をサーバーに送信し実行
+        $rs = $conn->query($sql);
         if (!$rs) die('エラー: ' . $conn->error);
 
         $row= $rs->fetch_assoc();//問合せ結果を1行受け取る
