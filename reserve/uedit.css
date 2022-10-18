@@ -3,18 +3,8 @@
 body{
     background-color: rgba(246, 239, 172, 0.723);
 }
-
-h1{
-    color:red;
-    font-size:30px;
-    text-shadow: 2px;
-    border: 2px;
-    border-color: black;
-    text-align:center;
-}
 .subm{
     width: 100px;
-
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #68779a;
@@ -29,3 +19,6 @@ h1{
     border: 1px solid #68779a;
 
 } 
+button{
+    text-align: center;
+}

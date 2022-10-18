@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "stylesheet" href = "uedit.css">
 <meta name="viewport" content="width=device-width">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ユーザー登録</title>
@@ -22,7 +23,7 @@ if(!$id || !$na || !$ema || !$pas){
     if(!$pas){
         echo "「パスワード」";
     }
-    exit ("が設定されていません。再度入力し直してください。<br><button onclick='history.back()'>戻る</button>");
+    exit ("が設定されていません。再度入力し直してください。<br><button style='text-align:center;' onclick='history.back()'>戻る</button>");
 
 }
 if(!$na){exit("名前が入力されていません");}
