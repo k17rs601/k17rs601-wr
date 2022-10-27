@@ -3,6 +3,7 @@
 body{
     background-color: rgba(246, 239, 172, 0.723);
 }
+
 h1{
     color:red;
     font-size:30px;
@@ -11,9 +12,18 @@ h1{
     border-color: black;
     text-align:center;
 }
-.subm{
-    width: 100px;
 
+h2{
+    text-align: center;
+    color:black;
+    margin-left:-8px;
+    margin-right:-8px;
+    padding:10px;
+    border : 5px solid rgb(123, 123, 255);
+    background-color : rgba(159, 223, 255, 0.568)
+}
+.botm{
+    width: 80px;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #68779a;
@@ -21,11 +31,7 @@ h1{
     cursor: pointer;
     color: black;
 }
-.login{
-    padding: 10px;
-    box-sizing: border-box;
-    background: azure;
-    border: 1px solid #68779a;
-
-} 
-
+.sele{
+    width:30em;
+    text-align: right;
+}
