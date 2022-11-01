@@ -1,8 +1,3 @@
-<?php
-print('セッションIDは '.$_COOKIE['PHPSESSID'].' 。');
-session_start();
-echo '<h4 style="text-align:right">ようこそ、'.$_SESSION["uname"].'さん<h4>'
-?>
 <!DOCTYPE html>
 <link rel = "stylesheet" href="res.css">
 <link rel = "stylesheet" href="list.css">
@@ -24,14 +19,16 @@ echo '<h4 style="text-align:right">ようこそ、'.$_SESSION["uname"].'さん<h
         <div style="margin-top:30px"></div>
         <h1>FAMIs予約サイト</h1>
         <hr>
-        「今からご来店のご予約」を行います。<br>
-        本日ご来店で現在の時刻より２時間後以降、または後日ご来店のお客様はTOPページの<a href="res2.php">「日付時間指定のご予約」</a>からご予約ください。
+        「日付時間指定のご予約」を行います。<br>
+        すぐにご来店（二時間以内にお店にご到着予定のお客様）は、<a href="res1.php">「今からご来店のご予約」</a>からご予約ください。
         <h2>今からご来店のご予約</h2>
         ・人数を選択してください<br>
-        
         <form action="res2.php" method="post">
             <!-- <input type="text" list="list" size="20px" style="text-align:right" readonly>
             <datalist id="list"> -->
+                <div class="">
+                
+                </div>
                 <div class="box">
                 <select class="select1" name="howp" required>
                 <option value="">--人数を選択してください--</option>
@@ -58,6 +55,30 @@ echo '<h4 style="text-align:right">ようこそ、'.$_SESSION["uname"].'さん<h
                 </div>
                 <a> --19名以上の人数のご予約はお店に直接ご予約ください。<br>
                 --テーブルを複数ご利用される場合は</a><br>
+                <select name="reserve_day">
+<?php
+date_default_timezone_set('Asia/Tokyo');
+$date = time();
+$year = date("Y");
+$month = date("n");
+$day = date("j");
+for ($i=0; $i<10; $i++):			
+$this_day = date("n月 j日", mktime(0, 0, 0, $month, $day + $i, $year));
+?>
+<option value="<?php print($this_day); ?>"><?php print($this_day); ?></option>
+<?php endfor; ?>
+</select>
+
+<!-- <?php
+$get_event_time_start = 10;
+$get_event_time_end = 16;
+
+echo "<select name=\"ご希望時間\">";
+for ($i = $get_event_time_start * 2; $i <= $get_event_time_end * 2; $i++) {
+   echo "<option>".date("H時i分", strtotime("00:00 +". $i * 30 ." minute"));
+}
+echo "</select>";
+?> -->
             <!-- </datalist>名<br> 
             <input type="reset" class="botm" value="リセット"> -->
             <input type="submit" class="botm"value="登録する">

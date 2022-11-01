@@ -26,3 +26,12 @@ if($sample_user->haveFever){
 }else{
     echo "良好<br />";
 }
+$get_event_time_start = 10;
+$get_event_time_end = 16;
+
+echo "<select name=\"ご希望時間\">";
+for ($i = $get_event_time_start * 2; $i <= $get_event_time_end * 2; $i++) {
+   echo "<option>".date("H時i分", strtotime("00:00 +". $i * 30 ." minute"));
+}
+echo "</select>";
+?>
