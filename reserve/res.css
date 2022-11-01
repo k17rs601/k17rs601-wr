@@ -1,28 +1,29 @@
 @charset "UTf-8";
 
-body{
+body {
     background-color: rgba(246, 239, 172, 0.723);
 }
 
-h1{
-    color:red;
-    font-size:30px;
+h1 {
+    color: red;
+    font-size: 30px;
     text-shadow: 2px;
     border: 2px;
     border-color: black;
-    text-align:center;
+    text-align: center;
 }
 
-h2{
+h2 {
     text-align: center;
-    color:black;
-    margin-left:-8px;
-    margin-right:-8px;
-    padding:10px;
-    border : 5px solid rgb(123, 123, 255);
-    background-color : rgba(159, 223, 255, 0.568)
+    color: black;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 10px;
+    border: 5px solid rgb(123, 123, 255);
+    background-color: rgba(159, 223, 255, 0.568)
 }
-.botm{
+
+.botm {
     width: 80px;
     padding: 10px;
     box-sizing: border-box;
@@ -31,7 +32,8 @@ h2{
     cursor: pointer;
     color: black;
 }
-.sele{
-    width:30em;
+
+.sele {
+    width: 30em;
     text-align: right;
 }

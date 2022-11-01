@@ -1,9 +1,10 @@
 @charset "UTf-8";
 
-body{
+body {
     background-color: rgba(246, 239, 172, 0.723);
 }
-.subm{
+
+.subm {
     width: 100px;
     padding: 10px;
     box-sizing: border-box;
@@ -12,13 +13,15 @@ body{
     cursor: pointer;
     color: black;
 }
- .login{
+
+.login {
     padding: 10px;
     box-sizing: border-box;
     background: azure;
     border: 1px solid #68779a;
 
-} 
-button{
+}
+
+button {
     text-align: center;
 }
