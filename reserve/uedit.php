@@ -14,7 +14,7 @@
     $ema = $_POST['email'];
     $pas  = $_POST['pass'];
     $id = $_POST['id'];
-    $con = mysqli_connect('localhost', 'root', '', 'FAMIs');
+    $con = new mysqli('localhost', 'root', '', 'FAMIs');
     if (!$id || !$na || !$ema || !$pas) {
         if (!$na) {
             echo "「ユーザーネーム」";
@@ -30,7 +30,6 @@
         }
         exit("が設定されていません。再度入力し直してください。<br><button style='text-align:center;' onclick='history.back()'>戻る</button>");
     }
-
     if (!$con) {
         exit('データベースに接続できませんでした。');
     }
@@ -44,9 +43,18 @@
     if (!$result) {
         exit('文字コードを指定できませんでした。');
     }
+    $rs = $con->query('SELECT MAX(seedid) AS max FROM tbl_user');
+    if (!$rs) {
+        exit('サーバーエラーです。管理者に問い合わせてください。');
+    }
+    $row = $rs->fetch_assoc();
+    $seedid = $row["max"];
+    $seedid += 1;
+
+
 
     // $coun = mysqli_query($con,"SELECT COUNT(*) FROM tbl_user;");
-    $result = mysqli_query($con, "INSERT INTO tbl_user(uid,uname, email, upass) VALUES('$id','$na', '$ema', '$pas')");
+    $result = mysqli_query($con, "INSERT INTO tbl_user(uid,uname, email, upass,seedid) VALUES('$id','$na', '$ema', '$pas','$seedid')");
     if (!$result) {
         exit('データを登録できませんでした。');
     }

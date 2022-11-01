@@ -25,7 +25,7 @@ session_regenerate_id();
         die($conn->connect_error);
     }
     $conn->set_charset('utf8');
-    $rs = $conn->query("SELECT uid , upass ,uname FROM tbl_user WHERE uid ='{$uid}' AND upass ='{$pass}'");
+    $rs = $conn->query("SELECT seedid,uid,upass,uname FROM tbl_user WHERE uid ='{$uid}' AND upass ='{$pass}'");
 
     if (!$rs) die('エラー: ' . $conn->error);
     $row = $rs->fetch_assoc(); //問合せ結果を1行受け取る
