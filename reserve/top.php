@@ -37,7 +37,13 @@ session_regenerate_id();
   <li><a href="res1.php">今からご来店のご予約</a></li>
   <li><a href="resi1.php">日付時間指定のご予約</a></li>
   <li><a href="res3.php">Quick予約</a></li>
-  <li><button onclick="location.href='./login.html'">予約キャンセル</li>
+  <?php
+  if (!$resn) {
+    echo '<li><button onclick="location.href=' . "'./login.html" . "'" . '" disabled>' . '予約キャンセル</li>';
+  } else {
+    echo '<li><button onclick="location.href=' . "'./login.html" . "'" . '">' . '予約キャンセル</li>';
+  }
+  ?>
 </ul>
 
 </body>

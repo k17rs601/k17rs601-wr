@@ -67,7 +67,7 @@
 
 
     // $coun = mysqli_query($con,"SELECT COUNT(*) FROM tbl_user;");
-    $result = mysqli_query($con, "INSERT INTO tbl_user(uid,uname, email, upass,seedid) VALUES('$id','$na', '$ema', '$pas','$seedid')");
+    $result = mysqli_query($con, "INSERT INTO tbl_user(uid,uname, email, upass) VALUES('$id','$na', '$ema', '$pas')");
     if (!$result) {
         exit('データを登録できませんでした。');
     }

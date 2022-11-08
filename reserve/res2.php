@@ -17,9 +17,10 @@ echo $_COOKIE['PHPSESSID'] . "<br>";
     予約が完了いたしました。<br>
     <h2>注文内容</h2><br>
     <?php
+    $uid = $_POST['uid'];
+    $pass = $_POST['pass'];
     date_default_timezone_set('Asia/Tokyo');
-    echo date('Y-m-d') . " "; //現在日付 2020-06-22
-    echo date('H:i') . "<br/>\n"; //現在時間 12:55:41
+    echo date('Y-m-d H:i') . " "; //現在日付 2020-06-22
     ?>
     予約番号
     <button onclick="location.href='top.php'">TOPに戻る
