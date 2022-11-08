@@ -1,17 +1,19 @@
 @charset "UTf-8";
 
-body{
+body {
     background-color: rgba(246, 239, 172, 0.723);
 }
-h1{
-    color:red;
-    font-size:30px;
+
+h1 {
+    color: red;
+    font-size: 30px;
     text-shadow: 2px;
     border: 2px;
     border-color: black;
-    text-align:center;
+    text-align: center;
 }
-.subm{
+
+.subm {
     width: 100px;
 
     padding: 10px;
@@ -21,11 +23,11 @@ h1{
     cursor: pointer;
     color: black;
 }
-.login{
+
+.login {
     padding: 10px;
     box-sizing: border-box;
     background: azure;
     border: 1px solid #68779a;
 
-} 
-
+}

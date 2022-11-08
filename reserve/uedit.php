@@ -43,14 +43,27 @@
     if (!$result) {
         exit('文字コードを指定できませんでした。');
     }
-    $rs = $con->query('SELECT MAX(seedid) AS max FROM tbl_user');
-    if (!$rs) {
-        exit('サーバーエラーです。管理者に問い合わせてください。');
-    }
-    $row = $rs->fetch_assoc();
-    $seedid = $row["max"];
-    $seedid += 1;
 
+    //////idとメールアドレスの被り防止//////
+    // $result = $con->query('SELECT uid FROM tbl_user WHERE uid ="{$id}"');
+    // if (!$result) {
+    //     exit('errer');
+    // }
+    // foreach ($result as $row) {
+    //     echo $row['uid'];
+    // }
+    ////////////s
+
+
+    /////SELECT MAXによるseedidの取得/////
+    // $rs = mysqli_query($con, 'SELECT MAX(seedid) AS max FROM tbl_user');
+    // if (!$rs) {
+    //     exit('サーバーエラーです。管理者に問い合わせてください。');
+    // }
+    // $row = $rs->fetch_assoc();
+    // $seedid = $row["max"];
+    // $seedid += 1;
+    //////////
 
 
     // $coun = mysqli_query($con,"SELECT COUNT(*) FROM tbl_user;");
