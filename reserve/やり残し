@@ -1,2 +1,7 @@
+タイトル案・目次案
+
 uedit.php
 IDやメールアドレスが重複してしまう。
+
+tbl_res
+BOOLEAN -> TINYINT  Bit(1)に変更
