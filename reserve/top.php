@@ -69,6 +69,7 @@ session_regenerate_id();
       echo '<li><button onclick="location.href=' . "'./login.html" . "'" . '">' . '予約キャンセル</li>';
     }
     ?>
+
   </ul>
 
 </body>

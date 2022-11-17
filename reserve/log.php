@@ -36,7 +36,7 @@ session_regenerate_id();
     $_SESSION["uid"] = $row['uid'];
     $_SESSION["uname"] = $row['uname'];
     $_SESSION["upass"] = $row['upass'];
-    $_SESSION["id"] = $row['$id'];
+    $_SESSION["id"] = $row['id'];
     header("Location:top.php");
     ?>
 </body>

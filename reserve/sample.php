@@ -45,4 +45,4 @@ $date = time(); ?>
 <?php ?>
 <?php ?>
 <br>
-<input type="datetime-local" value="$date" min="$date">
+<input type="datetime-local" value="<?php echo $date ?>" min="$date">
