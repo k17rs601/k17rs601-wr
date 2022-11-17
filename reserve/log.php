@@ -19,13 +19,13 @@ session_regenerate_id();
     $pass = $_POST['pass'];
     $con = mysqli_connect('localhost', 'root', '', 'FAMIs');
     $sql1 = "SELECT email , upass FROM tbl_user WHERE email ='{$uid}' AND upass='{$pass}'";
-
+    $sql2 = "SELECT id,uid,upass,uname FROM tbl_user WHERE uid ='{$uid}' AND upass ='{$pass}'";
     $conn = new mysqli("localhost", "root", "", "FAMIs"); //MySQLサーバへ接続
     if ($conn->connect_errno) {
         die($conn->connect_error);
     }
     $conn->set_charset('utf8');
-    $rs = $conn->query("SELECT seedid,uid,upass,uname FROM tbl_user WHERE uid ='{$uid}' AND upass ='{$pass}'");
+    $rs = $conn->query($sql2);
 
     if (!$rs) die('エラー: ' . $conn->error);
     $row = $rs->fetch_assoc(); //問合せ結果を1行受け取る
@@ -36,6 +36,7 @@ session_regenerate_id();
     $_SESSION["uid"] = $row['uid'];
     $_SESSION["uname"] = $row['uname'];
     $_SESSION["upass"] = $row['upass'];
+    $_SESSION["id"] = $row['$id'];
     header("Location:top.php");
     ?>
 </body>

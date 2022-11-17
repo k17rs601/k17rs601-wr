@@ -37,6 +37,8 @@ for ($i = $get_event_time_start * 2; $i <= $get_event_time_end * 2; $i++) {
 echo "</select>";
 ?>
 <br>
+
+
 時刻選択練習
 <?php
 $date = time(); ?>

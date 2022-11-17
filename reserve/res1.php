@@ -1,7 +1,6 @@
 <?php
-print('セッションIDは ' . $_COOKIE['PHPSESSID'] . ' 。');
 session_start();
-echo '<h4 style="text-align:right">ようこそ、' . $_SESSION["uname"] . 'さん<h4>'
+
 ?>
 <!DOCTYPE html>
 <link rel="stylesheet" href="res.css">
