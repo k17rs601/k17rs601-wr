@@ -25,7 +25,7 @@
     すぐにご来店（二時間以内にお店にご到着予定のお客様）は、<a href="res1.php">「今からご来店のご予約」</a>からご予約ください。
     <h2>今からご来店のご予約</h2>
     ・人数を選択してください<br>
-    <form action="res2.php" method="post">
+    <form action="resi2.php" method="post">
         <!-- <input type="text" list="list" size="20px" style="text-align:right" readonly>
             <datalist id="list"> -->
         <div class="">
@@ -65,11 +65,14 @@
             $year = date("Y");
             $month = date("n");
             $day = date("j");
+
+
             for ($i = 0; $i < 7; $i++) :
                 $this_day = date("n月 j日", mktime(0, 0, 0, $month, $day + $i, $year));
             ?>
                 <option value="<?php print($this_day); ?>"><?php print($this_day); ?></option>
             <?php endfor; ?>
+            
         </select>
         <!-- </datalist>名<br> 
             <input type="reset" class="botm" value="リセット"> -->
