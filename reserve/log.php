@@ -17,10 +17,10 @@ session_regenerate_id();
     <?php
     $uid = $_POST['uid'];
     $pass = $_POST['pass'];
-    $con = mysqli_connect('localhost', 'root', '', 'FAMIs');
+    $con = mysqli_connect('localhost', 'root', '', 'FARVAS');
     $sql1 = "SELECT email , upass FROM tbl_user WHERE email ='{$uid}' AND upass='{$pass}'";
     $sql2 = "SELECT id,uid,upass,uname FROM tbl_user WHERE uid ='{$uid}' AND upass ='{$pass}'";
-    $conn = new mysqli("localhost", "root", "", "FAMIs"); //MySQLサーバへ接続
+    $conn = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
     if ($conn->connect_errno) {
         die($conn->connect_error);
     }
