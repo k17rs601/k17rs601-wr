@@ -28,7 +28,7 @@ session_regenerate_id();
     die("セッションエラーです。再度ログインしてください。");
   }
 
-  $conn = new mysqli("localhost", "root", "", "FAMIs"); //MySQLサーバへ接続
+  $conn = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
   $conn->set_charset('utf8'); //データベースとの通信をUTF8で行う。 
   $id = $_SESSION["id"];
   $sql = "SELECT reserve FROM tbl_res WHERE id = '$id'"; //ユーザ識別番号が一致する予約番号を取得

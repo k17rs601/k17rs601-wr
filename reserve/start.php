@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="login.css">
   <link rel="stylesheet" href="listyle.css">
-  <h1 style="text-align:center">FAMIs予約サイト</h1>
+  <h1 style="text-align:center">FARVAS予約サイト</h1>
   <meta name="viewport" content="width=device-width">
 </head>
 
 <body>
   <?php
-  $con = mysqli_connect('localhost', 'root', '', 'FAMIs');
+  $con = mysqli_connect('localhost', 'root', '', 'FARVAS');
 
-  $rezu = mysqli_query($con, "FAMIs");
+  $rezu = mysqli_query($con, "FARVAS");
   ?>
   <h3>現在の順番の待ち組数</h3>
   <div style="font-size:20px; text-align:center">

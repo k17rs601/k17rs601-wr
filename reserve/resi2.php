@@ -11,7 +11,7 @@ if (isset($_SESSION["count1"])) {
 <?php
 date_default_timezone_set('Asia/Tokyo');     //基準時刻を日本に設定
 $date = date('Y-m-d');
-$conn = new mysqli("localhost", "root", "", "FAMIs"); //MySQLサーバへ接続
+$conn = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
 $conn->set_charset('utf8'); //データベースとの通信をUTF8で行う。
 $PeopleNumber = $_POST['howp']; 
 //$sqlid = "SELECT MAX(reserve_number) FROM tbl_res WHERE reserve_number < 999 and DATE(res_datetime) = '';";

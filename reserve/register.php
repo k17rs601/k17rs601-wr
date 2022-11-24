@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="uedit.css">
+    <link rel="stylesheet" href="register.css">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ユーザー登録</title>
@@ -14,7 +14,7 @@
     $ema = $_POST['email'];
     $pas  = $_POST['pass'];
     $id = $_POST['id'];
-    $con = new mysqli('localhost', 'root', '', 'FAMIs');
+    $con = new mysqli('localhost', 'root', '', 'FARVAS');
     if (!$id || !$na || !$ema || !$pas) {
         if (!$na) {
             echo "「ユーザーネーム」";
@@ -34,7 +34,7 @@
         exit('データベースに接続できませんでした。');
     }
 
-    $result = mysqli_select_db($con, 'FAMIs');
+    $result = mysqli_select_db($con, 'FARVAS');
     if (!$result) {
         exit('データベースを選択できませんでした。');
     }
