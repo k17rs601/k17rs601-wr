@@ -13,8 +13,8 @@ date_default_timezone_set('Asia/Tokyo');     //基準時刻を日本に設定
 $date = date('Y-m-d');
 $conn = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
 $conn->set_charset('utf8'); //データベースとの通信をUTF8で行う。
-//$sqlid = "SELECT MAX(reserve_number) FROM tbl_res WHERE reserve_number < 999 and DATE(res_datetime) = '';";
-$sql1 = "SELECT MAX(reserve_number) FROM tbl_res WHERE reserve_number < 1000 and DATE(res_datetime) = '$date' ;"; //即時予約の番号の最大値を取得
+//$sql2 = "SELECT COUNT(*) AS cnt FROM tbl_res WHERE res_number < 1000 and DATE(res_datetime) = '$date' ;";
+$sql1 = "SELECT MAX(res_number) FROM tbl_res WHERE res_number < 1000 and DATE(res_datetime) = '$date' ;"; //即時予約の番号の最大値を取得
 $PeopleNumber = $_POST['howp']; //人数取得
 
 $rs = $conn->query($sql1);
@@ -22,14 +22,14 @@ $row = $rs->fetch_assoc();
 if (!$row) {
     exit('サーバーエラーに接続できませんでした。');
 }
-if ($row["MAX(reserve_number)"] < 100) {
+if ($row["MAX(res_number)"] < 100) {
     $res_number = 100;
 } else {
-    $res_number = $row["MAX(reserve_number)"] + 1; //新しい予約番号
+    $res_number = $row["MAX(res_number)"] + 1; //新しい予約番号
 }
 
 
-if ($PeopleNumber < 6) { //必要なテーブル数の計算
+if ($PeopleNumber <= 6) { //必要なテーブル数の計算
     $TableNumber = 1;
 } else {
     $TableNumber = $PeopleNumber / 6 + 1;
@@ -39,7 +39,7 @@ $id = $_SESSION["id"];
 //     exit("セッションタイムアウト" . $id . "<button onclick=location.href='top.php'>TOPに戻る");
 // }
 
-$sql = "INSERT INTO tbl_res (id,people_number,table_number,reserve_number,reserve) VALUES ($id,$PeopleNumber,$TableNumber,$res_number,1);";
+$sql = "INSERT INTO tbl_res (id,people_number,table_number,res_number,reserve) VALUES ($id,$PeopleNumber,$TableNumber,$res_number,1);";
 $rs = $conn->query($sql);
 
 ?>

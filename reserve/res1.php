@@ -23,7 +23,7 @@ session_start();
         }
     </style>
     <div style="margin-top:30px"></div>
-    <h1>FAMIs予約サイト</h1>
+    <h1>FARVAS予約サイト</h1>
     <hr>
     「今からご来店のご予約」を行います。<br>
     本日ご来店で現在の時刻より２時間後以降、または後日ご来店のお客様はTOPページの<a href="resi1.php">「日付時間指定のご予約」</a>からご予約ください。

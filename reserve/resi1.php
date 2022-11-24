@@ -10,6 +10,13 @@
 </head>
 
 <body>
+    <?php
+    date_default_timezone_set('Asia/Tokyo');
+    $date = time();
+    $year = date("Y");
+    $month = date("n");
+    $day = date("j");
+    ?>
     <style>
         .box select {
             /* border:1px solid; */
@@ -60,22 +67,20 @@
         </a><br>
         <select name="reserve_day">
             <?php
-            date_default_timezone_set('Asia/Tokyo');
-            $date = time();
-            $year = date("Y");
-            $month = date("n");
-            $day = date("j");
-
-
+            
             for ($i = 0; $i < 7; $i++) :
                 $this_day = date("n月 j日", mktime(0, 0, 0, $month, $day + $i, $year));
-            ?>
-                <option value="<?php print($this_day); ?>"><?php print($this_day); ?></option>
-            <?php endfor; ?>
             
+            echo '<option value="'.$this_day.'">'.$this_day.'</option>';
+             endfor; ?>
+             <div>
+                <label for="time-date">予約希望時刻</label>
+                <input type="time" name="time-date" min="7:00" max="23:00" required/>
+	</div>
         </select>
         <!-- </datalist>名<br> 
             <input type="reset" class="botm" value="リセット"> -->
+            <br>
         <input type="submit" class="botm" value="登録する">
     </form>
 </body>
