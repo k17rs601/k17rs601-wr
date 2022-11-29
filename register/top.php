@@ -20,11 +20,11 @@
   番
   <br>
   予約なしはこちら
-  <a href="rece.php">受付</a>
+  <a href="register.php">受付</a>
 
   <br>
   予約済みはこちら
-  <a href="chein.php">チェックインする</a>
+  <a href="checkin.php">チェックインする</a>
   <br>
   予約番号<br>
   保留中

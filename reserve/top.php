@@ -74,10 +74,10 @@ if(!$_SESSION["id"]){    //セッションがない時（初回ログイン時�
   <h3>お客様のご予約番号</h3>
   <?php
   if (!$row) {
-    echo '<div style="text-align:center"><input type="text" id="rnum" name="rescount" value="" class="txt1" placeholder="現在ご予約がございません。予約を行ってください。" style="text-align:center" readonly></div>';
+    echo '<div style="text-align:center"><input type="text" id="rnum" name="rescount" value="" class="txt1" placeholder="現在ご予約がございません。予約を行ってください。" style="text-align:center" readonly></div>　';
   } else {
     echo '<div style="text-align:center">';
-    echo '<input type="text" id="rnum" name="rescount" value="" class="txt1" placeholder="現在ご予約がございません。予約を行ってください。" style="text-align:center" readonly>';
+    echo '<input type="text" id="rnum" name="rescount" value="" class="txt1" placeholder="現在ご予約がございません。予約を行ってください。" style="text-align:center" readonly>　';
     echo '</div>';
   }
   ?>

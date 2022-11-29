@@ -1,8 +1,3 @@
-<?php
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <link rel="stylesheet" href="res.css">
 <link rel="stylesheet" href="list.css">
@@ -74,16 +69,38 @@ session_start();
         <?php
             
             for ($i = 0; $i < 7; $i++) :
-                $this_day = date("Y-n-j", mktime(0, 0, 0, $month, $day + $i, $year));
+                $this_day = date("n月j日", mktime(0, 0, 0, $month, $day + $i, $year));
             
-            echo '<option value="'.$this_day.'">'.$this_day = date("Y年n月j日 ", mktime(0, 0, 0, $month, $day + $i, $year)).'</option>';
+            echo '<option value="'.$this_day.'">'.$this_day.'</option>';
             endfor; ?>
-        </select>
             <div>
-                <input type="time" name="reserve_time" min="7:00:00" max="23:00:00" required/>
+                <label for="time-date">予約希望時刻</label>
+                <input type="time" name="reserve_time" min="7:00" max="23:00" required/>
             </div>
-        
+        </select>
 
+        <!-- <div class="container">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                $(function () {
+                $('#datetimepicker1').datetimepicker();
+                });
+                </script>
+            </div>
+        </div> -->
+
+        <!-- </datalist>名<br> 
+            <input type="reset" class="botm" value="リセット"> -->
             <br>
         <input type="submit" class="botm" value="登録する">
     </form>
