@@ -2,6 +2,7 @@
 session_start();
 
 ?>
+
 <!DOCTYPE html>
 <link rel="stylesheet" href="res.css">
 <link rel="stylesheet" href="list.css">
@@ -14,6 +15,13 @@ session_start();
 </head>
 
 <body>
+    <?php
+    date_default_timezone_set('Asia/Tokyo');
+    $date = time();
+    $year = date("Y");
+    $month = date("n");
+    $day = date("j");
+    ?>
     <style>
         .box select {
             /* border:1px solid; */
@@ -25,14 +33,16 @@ session_start();
     <div style="margin-top:30px"></div>
     <h1>FARVAS予約サイト</h1>
     <hr>
-    「今からご来店のご予約」を行います。<br>
-    本日ご来店で現在の時刻より２時間後以降、または後日ご来店のお客様はTOPページの<a href="resi1.php">「日付時間指定のご予約」</a>からご予約ください。
+    「日付時間指定のご予約」を行います。<br>
+    すぐにご来店（二時間以内にお店にご到着予定のお客様）は、<a href="res_now.php">「今からご来店のご予約」</a>からご予約ください。
     <h2>今からご来店のご予約</h2>
     ・人数を選択してください<br>
-
-    <form action="res2.php" method="post">
+    <form action="res_dtime2.php" method="post">
         <!-- <input type="text" list="list" size="20px" style="text-align:right" readonly>
             <datalist id="list"> -->
+        <div class="">
+
+        </div>
         <div class="box">
             <select class="select1" name="howp" required>
                 <option value="">--人数を選択してください--</option>
@@ -59,10 +69,22 @@ session_start();
         </div>
         <a> --19名以上の人数のご予約はお店に直接ご予約ください。<br>
             --テーブルを複数ご利用される場合は
-        </a>
-        <br>
-        <!-- </datalist>名<br> 
-            <input type="reset" class="botm" value="リセット"> -->
+        </a><br>
+        <select name="reserve_day">
+        <?php
+            
+            for ($i = 0; $i < 7; $i++) :
+                $this_day = date("Y-n-j", mktime(0, 0, 0, $month, $day + $i, $year));
+            
+            echo '<option value="'.$this_day.'">'.$this_day = date("Y年n月j日 ", mktime(0, 0, 0, $month, $day + $i, $year)).'</option>';
+            endfor; ?>
+        </select>
+            <div>
+                <input type="time" name="reserve_time" min="7:00:00" max="23:00:00" required/>
+            </div>
+        
+
+            <br>
         <input type="submit" class="botm" value="登録する">
     </form>
 </body>

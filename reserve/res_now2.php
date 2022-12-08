@@ -34,12 +34,12 @@ if ($PeopleNumber <= 6) { //必要なテーブル数の計算
 } else {
     $TableNumber = $PeopleNumber / 6 + 1;
 }
-$id = $_SESSION["id"];
-// if (!$id) {
-//     exit("セッションタイムアウト" . $id . "<button onclick=location.href='top.php'>TOPに戻る");
+$uid = $_SESSION["uid"];
+// if (!$uid) {
+//     exit("セッションタイムアウト" . $uid . "<button onclick=location.href='top.php'>TOPに戻る");
 // }
 
-$sql = "INSERT INTO tbl_res (id,people_number,table_number,res_number,reserve) VALUES ($id,$PeopleNumber,$TableNumber,$res_number,1);";
+$sql = "INSERT INTO tbl_res (uid,people_number,table_number,res_number,reserve) VALUES ($uid,$PeopleNumber,$TableNumber,$res_number,1);";
 $rs = $conn->query($sql);
 
 ?>

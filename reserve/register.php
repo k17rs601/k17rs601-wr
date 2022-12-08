@@ -13,16 +13,16 @@
     $na = $_POST['name'];
     $ema = $_POST['email'];
     $pas  = $_POST['pass'];
-    $id = $_POST['id'];
+    $uid = $_POST['uid'];
     $con = new mysqli('localhost', 'root', '', 'FARVAS');
-    if (!$id || !$na || !$ema || !$pas) {
+    if (!$uid || !$na || !$ema || !$pas) {
         if (!$na) {
             echo "「ユーザーネーム」";
         }
         if (!$ema) {
             echo "「メールアドレス」";
         }
-        if (!$id) {
+        if (!$uid) {
             echo "「ユーザーID」";
         }
         if (!$pas) {
@@ -44,30 +44,18 @@
         exit('文字コードを指定できませんでした。');
     }
 
-    //////idとメールアドレスの被り防止//////
-    // $result = $con->query('SELECT uid FROM tbl_user WHERE uid ="{$id}"');
+    //////uidとメールアドレスの被り防止//////
+    // $result = $con->query('SELECT loginid FROM tbl_user WHERE loginid ="{$uid}"');
     // if (!$result) {
     //     exit('errer');
     // }
     // foreach ($result as $row) {
-    //     echo $row['uid'];
+    //     echo $row['loginid'];
     // }
     ////////////s
 
-
-    /////SELECT MAXによるseedidの取得/////
-    // $rs = mysqli_query($con, 'SELECT MAX(seedid) AS max FROM tbl_user');
-    // if (!$rs) {
-    //     exit('サーバーエラーです。管理者に問い合わせてください。');
-    // }
-    // $row = $rs->fetch_assoc();
-    // $seedid = $row["max"];
-    // $seedid += 1;
-    //////////
-
-
     // $coun = mysqli_query($con,"SELECT COUNT(*) FROM tbl_user;");
-    $result = mysqli_query($con, "INSERT INTO tbl_user(uid,uname, email, upass) VALUES('$id','$na', '$ema', '$pas')");
+    $result = mysqli_query($con, "INSERT INTO tbl_user(loginid,uname, email, upass) VALUES('$uid','$na', '$ema', '$pas')");
     if (!$result) {
         exit('データを登録できませんでした。');
     }

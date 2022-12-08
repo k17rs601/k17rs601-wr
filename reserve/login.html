@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<link rel = "stylesheet" href="login.css">
-<html lang ="ja">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <title>FARVASログイン画面</title>
-    </head>
+<link rel="stylesheet" href="login.css">
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>FARVASログイン画面</title>
+</head>
 
 <body>
     <h1 style="text-align:center">FARVAS予約サイト</h1>
     <hr>
-    <form action="top.php" method="post">
+    <form action="login.php" method="post">
         <table align="center" class="login">
-            <tr><td>ユーザーID：</td><td><input type="text" name="uid" size="35%" placeholder="ID"></td></tr>
-            <tr><td>パスワード：</td><td><input type="password" name="pass" size="35%" placeholder="パスワード"></td></tr>
+            <tr>
+                <td>ユーザーID：</td>
+                <td><input type="text" name="loginid" size="35%" placeholder="ID"></td>
+            </tr>
+            <tr>
+                <td>パスワード：</td>
+                <td><input type="password" name="pass" size="35%" placeholder="パスワード"></td>
+            </tr>
         </table>
         <div style="text-align:center;font-size:large;">
-            <input type="submit" value="ログイン" class="subm" >
-        </div> 
+            <input type="submit" value="ログイン" class="subm">
+        </div>
     </form>
     <h4 style="text-align:center;"><a href="register.html">新規ご登録はコチラから</a></h4>
 </body>
-</html>
 
+</html>

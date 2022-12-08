@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <link rel="stylesheet" href="res.css">
 <link rel="stylesheet" href="list.css">
@@ -10,13 +14,6 @@
 </head>
 
 <body>
-    <?php
-    date_default_timezone_set('Asia/Tokyo');
-    $date = time();
-    $year = date("Y");
-    $month = date("n");
-    $day = date("j");
-    ?>
     <style>
         .box select {
             /* border:1px solid; */
@@ -26,18 +23,16 @@
         }
     </style>
     <div style="margin-top:30px"></div>
-    <h1>FAMIs予約サイト</h1>
+    <h1>FARVAS予約サイト</h1>
     <hr>
-    「日付時間指定のご予約」を行います。<br>
-    すぐにご来店（二時間以内にお店にご到着予定のお客様）は、<a href="res1.php">「今からご来店のご予約」</a>からご予約ください。
+    「今からご来店のご予約」を行います。<br>
+    本日ご来店で現在の時刻より２時間後以降、または後日ご来店のお客様はTOPページの<a href="res_dtime.php">「日付時間指定のご予約」</a>からご予約ください。
     <h2>今からご来店のご予約</h2>
     ・人数を選択してください<br>
-    <form action="resi2.php" method="post">
+
+    <form action="res_now2.php" method="post">
         <!-- <input type="text" list="list" size="20px" style="text-align:right" readonly>
             <datalist id="list"> -->
-        <div class="">
-
-        </div>
         <div class="box">
             <select class="select1" name="howp" required>
                 <option value="">--人数を選択してください--</option>
@@ -64,44 +59,10 @@
         </div>
         <a> --19名以上の人数のご予約はお店に直接ご予約ください。<br>
             --テーブルを複数ご利用される場合は
-        </a><br>
-        <select name="reserve_day">
-        <?php
-            
-            for ($i = 0; $i < 7; $i++) :
-                $this_day = date("n月j日", mktime(0, 0, 0, $month, $day + $i, $year));
-            
-            echo '<option value="'.$this_day.'">'.$this_day.'</option>';
-            endfor; ?>
-            <div>
-                <label for="time-date">予約希望時刻</label>
-                <input type="time" name="reserve_time" min="7:00" max="23:00" required/>
-            </div>
-        </select>
-
-        <!-- <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker1'>
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                $(function () {
-                $('#datetimepicker1').datetimepicker();
-                });
-                </script>
-            </div>
-        </div> -->
-
+        </a>
+        <br>
         <!-- </datalist>名<br> 
             <input type="reset" class="botm" value="リセット"> -->
-            <br>
         <input type="submit" class="botm" value="登録する">
     </form>
 </body>
