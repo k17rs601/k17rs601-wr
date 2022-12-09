@@ -13,14 +13,12 @@ date_default_timezone_set('Asia/Tokyo');     //基準時刻を日本に設定
 
 $conn = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
 $conn->set_charset('utf8'); //データベースとの通信をUTF8で行う。
-$PeopleNumber = $_POST['howp']; 
-$reserve_datetimest = $_POST['reserve_day']." ".$_POST['reserve_time'].":00"; //POSTで日付と時間を受け取り、Y-n-j H:i:sの形で文字列表示
-$reserve_datetime = date('Y-n-j H:i:s',strtotime($reserve_datetimest)); //文字列をDATE型に変更（INSERT用）
-$date = date('Y-n-j',strtotime($reserve_datetime)); //Y-n-jの形で予約時間を表示（SELECT用）
+$PeopleNumber = $_POST['howp'];
+$reserve_datetimest = $_POST['reserve_day'] . " " . $_POST['reserve_time'] . ":00"; //POSTで日付と時間を受け取り、Y-n-j H:i:sの形で文字列表示
+$reserve_datetime = date('Y-n-j H:i:s', strtotime($reserve_datetimest)); //文字列をDATE型に変更（INSERT用）
+$date = date('Y-n-j', strtotime($reserve_datetime)); //Y-n-jの形で予約時間を表示（SELECT用）
 
-$sql = "INSERT INTO tbl_res(uid,res_datetime,people_number,table_number,res_number,reserve) VALUES ($uid,'$reserve_datetime',$PeopleNumber,$TableNumber,$res_number,1);";//予約を登録
 $sql1 = "SELECT MAX(res_number) FROM tbl_res WHERE res_number > 999 and DATE(res_datetime) = '$date' ;"; //即時予約の番号の最大値を取得
-
 
 $rs = $conn->query($sql1);
 $row = $rs->fetch_assoc();
@@ -40,13 +38,14 @@ if ($PeopleNumber <= 6) { //必要なテーブル数の計算
     $TableNumber = $PeopleNumber / 6 + 1;
 }
 $uid = $_SESSION["uid"];
+
+$sql = "INSERT INTO tbl_res(uid,res_datetime,people_number,table_number,res_number,reserve) VALUES ( $uid ,'$reserve_datetime', $PeopleNumber , $TableNumber , $res_number ,1);"; //予約を登録
 // if (!$uid) {
 //     exit("セッションタイムアウト" . $uid . "<button onclick=location.href='top.php'>TOPに戻る");
 // }
-
 $rs = $conn->query($sql);
-echo $sql."<br>";
-echo $sql1."<br>";
+echo "<br>" . $sql . "<br><br>";
+echo $sql1 . "<br><br><br>";
 
 ?>
 
@@ -63,7 +62,7 @@ echo $sql1."<br>";
     <h2>注文内容</h2><br>
     <?php
     echo "<br>予約番号" . $res_number; //現在日付時間を表示
-    echo "<br>文字列時間".$reserve_datetimest."<br>時間".$reserve_datetime;
+    echo "<br>文字列時間" . $reserve_datetimest . "<br>時間" . $reserve_datetime;
     ?>
     <button onclick="location.href='top.php'">TOPに戻る
 </body>
