@@ -5,7 +5,7 @@
 <script type="text/javascript">
   //////////
   function addTF(str) {
-    document.recepnumber.recenumber.value += str;
+    document.res_number.res_number.value += str;
   }
 </script>
 
@@ -21,10 +21,10 @@
 </head>
 
 <body>
-  人数を入力してください。
-  <form action="receptionist.php" name="recepnumber" method="post">
-    <input type="text" name="recenumber" maxlength="100" Style="text-align:right;" readonly>
-    <a>人</a><br>
+  予約番号を入力してください。
+  <form action="checkin.php" name="res_number" method="post">
+    <input type="text" name="res_number" maxlength="9999" Style="text-align:right;" readonly>
+    <a>番</a><br>
     <div id="btn">
       <input type="button" value="1" class="btn1" onClick="addTF(this.value)">
       <input type="button" value="2" class="btn1" onClick="addTF(this.value)">

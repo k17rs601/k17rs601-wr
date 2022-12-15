@@ -6,10 +6,16 @@ body {
   aspect-ratio: 16 / 9;
 }
 
+.receptionist_table {
+  color: black;
+  font-size: 25px;
+  margin-right: 14px;
+}
 
-.rnumber{
-  background:lightblue none;
-font-size:20px;
+
+.rnumber {
+  background: lightblue none;
+  font-size: 20px;
   /* background:#fff none;
  position:relative;
  border:1px solid #ccc;
@@ -28,47 +34,49 @@ font-size:20px;
  height:auto */
 }
 
-.num{
-  font-size:100px;
+.num {
+  font-size: 100px;
 }
 
-#btn{
+#btn {}
 
-}
-
-.btn1{  
+.btn1 {
   /* display: flex;
   justify-content: flex-end;
 text-align:center; */
-overflow: hidden;
-font-size:70px;
-width: 9%;
-height:5%;
-}
-.btn2{
-  /* display: flex;
-  justify-content: flex-end; */
   overflow: hidden;
-  font-size:70px;
-  width: 9%;
-  height:5%;
-}
-.btn3{
-  /* display: flex;
-  justify-content: flex-end; */
-  overflow: hidden;
-  top:0;
-  font-size:70px;
-  width: 9%;
-  height:5%;
-}
-.btn4{
-  font-size:70px;
+  font-size: 70px;
   width: 9%;
   height: 5%;
 }
-.btn5{
-  font-size:35px;
+
+.btn2 {
+  /* display: flex;
+  justify-content: flex-end; */
+  overflow: hidden;
+  font-size: 70px;
+  width: 9%;
+  height: 5%;
+}
+
+.btn3 {
+  /* display: flex;
+  justify-content: flex-end; */
+  overflow: hidden;
+  top: 0;
+  font-size: 70px;
+  width: 9%;
+  height: 5%;
+}
+
+.btn4 {
+  font-size: 70px;
+  width: 9%;
+  height: 5%;
+}
+
+.btn5 {
+  font-size: 35px;
   width: 9%;
   height: 5%;
 }
