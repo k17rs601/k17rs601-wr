@@ -26,13 +26,13 @@
     }
     $con = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
     $con->set_charset('utf8'); //データベースとの通信をUTF8で行う。
-    $sql = "SELECT res_number FROM `tbl_res` WHERE DATE(res_datetime) = '$date' AND res_number <= 999 ORDER BY res_number DESC";
+    $sql = "SELECT res_number FROM `tel_res` WHERE DATE(res_datetime) = '$date' AND res_number <= 999 ORDER BY res_number DESC";
 
     $rs = $con->query($sql);
     $row = $rs->fetch_assoc();
 
     if ($row != null) { //予約番号を作成
-        $resep_number = $row["res_number"] + 1;
+        $recep_number = $row["res_number"] + 1;
     } else {
         $recep_number = 100;
     }
@@ -44,7 +44,7 @@
     }
 
 
-    $sql1 = "INSERT INTO `tbl_res`(res_number,people_number,table_number,receptionist) VALUES ($resep_number,$recenumber,$zaseki_number,3)";
+    $sql1 = "INSERT INTO `tel_res`(res_number,people_number,table_number,receptionist) VALUES ($recep_number,$recenumber,$zaseki_number,3)";
     $con->query($sql1);
     echo $sql1;
     //データベースに問い合わせ、残りの空き席数を検索

@@ -7,8 +7,8 @@ $loginid = $_POST['loginid'];
 $pass = $_POST['pass'];
 
 $con = new mysqli('localhost', 'root', '', 'FARVAS');
-$sql1 = "SELECT email , upass FROM tbl_user WHERE email ='{$loginid}' AND upass='{$pass}'";
-$sql2 = "SELECT uid,loginid,upass,uname FROM tbl_user WHERE loginid ='{$loginid}' AND upass ='{$pass}'";
+$sql1 = "SELECT email , upass FROM tel_user WHERE email ='{$loginid}' AND upass='{$pass}'";
+$sql2 = "SELECT uid,loginid,upass,uname FROM tel_user WHERE loginid ='{$loginid}' AND upass ='{$pass}'";
 $conn = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
 if ($conn->connect_errno) {
     die($conn->connect_error);

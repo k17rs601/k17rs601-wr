@@ -1,11 +1,15 @@
 @charset "UTf-8";
 
+
+
 body {
     background-color: rgba(246, 239, 172, 0.723);
+    font-family: serif;
 }
 
 h1 {
     color: red;
+    font-family: sans-serif;
     font-size: 30px;
     text-shadow: 2px;
     border: 2px;

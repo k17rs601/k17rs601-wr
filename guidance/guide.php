@@ -1,11 +1,16 @@
 <?php
-  $i = 0;
-  while(true) {
-    echo date("Y/m/d H:i:s");
-    echo '<br/>';
-    sleep(5);
-    $i = $i + 1;
-    if ($i == 5) {
-      break;
-    }
-  }
+$ehon = "作成済みの絵本";
+
+echo '$ehon<br>';
+echo "$ehon<br>";
+echo 'これは' . $ehon . '<br>';
+echo "これは" . $ehon . "です。<br>";
+?>
+
+<head>
+
+</head>
+
+<body>
+
+</body>

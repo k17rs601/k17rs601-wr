@@ -34,7 +34,7 @@ session_start();
     <h1>FARVAS予約サイト</h1>
     <hr>
     「日付時間指定のご予約」を行います。<br>
-    すぐにご来店（二時間以内にお店にご到着予定のお客様）は、<a href="res_now.php">「今からご来店のご予約」</a>からご予約ください。
+    すぐにご来店（２時間以内にお店にご到着予定のお客様）は、<a href="res_now.php">「今からご来店のご予約」</a>からご予約ください。
     <h2>今からご来店のご予約</h2>
     ・人数を選択してください<br>
     <form action="res_dtime2.php" method="post">
@@ -71,20 +71,20 @@ session_start();
             --テーブルを複数ご利用される場合は
         </a><br>
         <select name="reserve_day">
-        <?php
-            
+            <?php
+
             for ($i = 0; $i < 7; $i++) :
                 $this_day = date("Y-n-j", mktime(0, 0, 0, $month, $day + $i, $year));
-            
-            echo '<option value="'.$this_day.'">'.$this_day = date("Y年n月j日 ", mktime(0, 0, 0, $month, $day + $i, $year)).'</option>';
+
+                echo '<option value="' . $this_day . '">' . $this_day = date("Y年n月j日 ", mktime(0, 0, 0, $month, $day + $i, $year)) . '</option>';
             endfor; ?>
         </select>
-            <div>
-                <input type="time" name="reserve_time" min="7:00:00" max="23:00:00" required/>
-            </div>
-        
+        <div>
+            <input type="time" name="reserve_time" min="7:00:00" max="23:00:00" required />
+        </div>
 
-            <br>
+
+        <br>
         <input type="submit" class="botm" value="登録する">
     </form>
 </body>

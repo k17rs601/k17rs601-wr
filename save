@@ -1,0 +1,20 @@
+CREATE TABLE `tel_res`(
+resid int PRIMARY KEY,
+ uid int,
+ res_datetime DATETIME,
+ res_number smallint,
+ receptionist tinyint,
+ people_number tinyint,
+ table_number tinyint,
+ reserve boolean,
+ guide boolean,
+ hold boolean
+)
+
+CREATE FARVAS TABLE `tel_user`(
+    uid int,
+    loginid varchar(16),
+    upass varchar(20),
+    uname varchar(20),
+    email varchar(64)
+)

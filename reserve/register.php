@@ -39,13 +39,13 @@
         exit('データベースを選択できませんでした。');
     }
 
-    $result = mysqli_query($con, "SELECT * FROM tbl_user");
+    $result = mysqli_query($con, "SELECT * FROM tel_user");
     if (!$result) {
         exit('文字コードを指定できませんでした。');
     }
 
     //////uidとメールアドレスの被り防止//////
-    // $result = $con->query('SELECT loginid FROM tbl_user WHERE loginid ="{$uid}"');
+    // $result = $con->query('SELECT loginid FROM tel_user WHERE loginid ="{$uid}"');
     // if (!$result) {
     //     exit('errer');
     // }
@@ -54,8 +54,8 @@
     // }
     ////////////s
 
-    // $coun = mysqli_query($con,"SELECT COUNT(*) FROM tbl_user;");
-    $result = mysqli_query($con, "INSERT INTO tbl_user(loginid,uname, email, upass) VALUES('$uid','$na', '$ema', '$pas')");
+    // $coun = mysqli_query($con,"SELECT COUNT(*) FROM tel_user;");
+    $result = mysqli_query($con, "INSERT INTO tel_user(loginid,uname, email, upass) VALUES('$uid','$na', '$ema', '$pas')");
     if (!$result) {
         exit('データを登録できませんでした。');
     }

@@ -13,8 +13,8 @@ date_default_timezone_set('Asia/Tokyo');     //基準時刻を日本に設定
 $date = date('Y-m-d');
 $conn = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
 $conn->set_charset('utf8'); //データベースとの通信をUTF8で行う。
-//$sql2 = "SELECT COUNT(*) AS cnt FROM tbl_res WHERE res_number < 1000 and DATE(res_datetime) = '$date' ;";
-$sql1 = "SELECT MAX(res_number) FROM tbl_res WHERE res_number < 1000 and DATE(res_datetime) = '$date' ;"; //即時予約の番号の最大値を取得
+//$sql2 = "SELECT COUNT(*) AS cnt FROM tel_res WHERE res_number < 1000 and DATE(res_datetime) = '$date' ;";
+$sql1 = "SELECT MAX(res_number) FROM tel_res WHERE res_number < 1000 and DATE(res_datetime) = '$date' ;"; //即時予約の番号の最大値を取得
 $PeopleNumber = $_POST['howp']; //人数取得
 
 $rs = $conn->query($sql1);
@@ -39,7 +39,7 @@ $uid = $_SESSION["uid"];
 //     exit("セッションタイムアウト" . $uid . "<button onclick=location.href='top.php'>TOPに戻る");
 // }
 
-$sql = "INSERT INTO tbl_res (uid,people_number,table_number,res_number,reserve) VALUES ($uid,$PeopleNumber,$TableNumber,$res_number,1);";
+$sql = "INSERT INTO tel_res (uid,people_number,table_number,res_number,reserve) VALUES ($uid,$PeopleNumber,$TableNumber,$res_number,1);";
 $rs = $conn->query($sql);
 
 ?>
