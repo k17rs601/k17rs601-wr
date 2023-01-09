@@ -20,7 +20,7 @@
         19名を超える際は店員に申し付け下さい。<br>
         <a href='top.php'>TOPに戻る</a>");
     }
-    if ($recenumber == null) {
+    if (!$recenumber) {
         exit("0名は無効です。人数を入力し直してください。<br>
         <a href='receptionist.html'>戻る</a>");
     }
@@ -31,7 +31,7 @@
     $rs = $con->query($sql);
     $row = $rs->fetch_assoc();
 
-    if ($row != null) { //予約番号を作成
+    if ($row) { //予約番号を作成
         $recep_number = $row["res_number"] + 1;
     } else {
         $recep_number = 100;
@@ -39,14 +39,17 @@
 
     if ($recenumber <= 6) { //必要なテーブル数の計算
         $zaseki_number = 1;
-    } else {
-        $zaseki_number = $recenumber / 6 + 1;
+    } else if ($recenumber <= 12) {
+        $zaseki_number = 2;
+    } else if ($recenumber <= 18) {
+        $zaseki_number = 3;
     }
 
 
-    $sql1 = "INSERT INTO `tel_res`(res_number,people_number,table_number,receptionist) VALUES ($recep_number,$recenumber,$zaseki_number,3)";
+    $sql1 = "INSERT INTO `tel_res`(res_number,people_number,table_number,receptionist,reserve) VALUES ($recep_number,$recenumber,$zaseki_number,3,1)";
     $con->query($sql1);
     echo $sql1;
+    echo $sql;
     //データベースに問い合わせ、残りの空き席数を検索
 
     //　データベースに新規登録(reception = 3,table_number,poeple_number)

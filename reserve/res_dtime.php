@@ -23,11 +23,44 @@ session_start();
     $day = date("j");
     ?>
     <style>
+        .box {
+            text-align: center;
+        }
+
         .box select {
             /* border:1px solid; */
+            padding-left: 5px;
             font-size: 20px;
-            width: 16em;
+            width: 18em;
             background-color: white;
+            text-align: center;
+        }
+
+        #mintext {
+            font-size: 80%;
+        }
+
+        .timetext {
+            font-size: 20px;
+            width: 18em;
+            background-color: white;
+            text-align: center;
+        }
+
+        .box#selecttext {
+            font-size: 16px;
+        }
+
+        .botm {
+            padding: 2px;
+            width: 9em;
+            font-size: 16px;
+            border: 3px inset black;
+        }
+
+        .button {
+            margin-top: 5%;
+            text-align: center;
         }
     </style>
     <div style="margin-top:30px"></div>
@@ -36,16 +69,14 @@ session_start();
     「日付時間指定のご予約」を行います。<br>
     すぐにご来店（２時間以内にお店にご到着予定のお客様）は、<a href="res_now.php">「今からご来店のご予約」</a>からご予約ください。
     <h2>今からご来店のご予約</h2>
-    ・人数を選択してください<br>
+    <h3>ご利用人数</h3>
     <form action="res_dtime2.php" method="post">
         <!-- <input type="text" list="list" size="20px" style="text-align:right" readonly>
             <datalist id="list"> -->
-        <div class="">
 
-        </div>
         <div class="box">
             <select class="select1" name="howp" required>
-                <option value="">--人数を選択してください--</option>
+                <option value="" id="selecttext">--人数を選択してください--</option>
                 <optgroup label="テーブル１席">
                     <option value="1">１名</option>
                     <option value="2">２名</option>
@@ -66,26 +97,31 @@ session_start();
                     <option value="13">１３〜１８名</option>
                 </optgroup>
             </select>
+            <br>
+            <a id="mintext"> ※19名以上の人数のご予約はお店に直接ご予約ください。</a>
         </div>
-        <a> --19名以上の人数のご予約はお店に直接ご予約ください。<br>
-            --テーブルを複数ご利用される場合は
-        </a><br>
-        <select name="reserve_day">
-            <?php
+        <h3>ご来店予定の日にち</h3>
 
-            for ($i = 0; $i < 7; $i++) :
-                $this_day = date("Y-n-j", mktime(0, 0, 0, $month, $day + $i, $year));
+        <div class="box">
+            <select name="reserve_day">
+                <?php
+                for ($i = 0; $i < 7; $i++) :
+                    $this_day = date("Y-n-j", mktime(0, 0, 0, $month, $day + $i, $year));
 
-                echo '<option value="' . $this_day . '">' . $this_day = date("Y年n月j日 ", mktime(0, 0, 0, $month, $day + $i, $year)) . '</option>';
-            endfor; ?>
-        </select>
-        <div>
-            <input type="time" name="reserve_time" min="7:00:00" max="23:00:00" required />
+                    echo '<option value="' . $this_day . '">' . $this_day = date("Y年n月j日 ", mktime(0, 0, 0, $month, $day + $i, $year)) . '</option>';
+                endfor; ?>
+            </select>
+        </div>
+
+        <h3>ご来店予定時間</h3>
+        <div class="box">
+            <input type="time" class="timetext" name="reserve_time" min="7:00:00" max="23:00:00" required />
         </div>
 
 
-        <br>
-        <input type="submit" class="botm" value="登録する">
+        <div class="button">
+            <input type="submit" class="botm" value="登録する">
+        </div>
     </form>
 </body>
 

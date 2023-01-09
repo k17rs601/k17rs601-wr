@@ -31,23 +31,39 @@ if ($row["MAX(res_number)"] < 1000) {
     $res_number = $row["MAX(res_number)"] + 1; //新しい予約番号
 }
 
-
 if ($PeopleNumber <= 6) { //必要なテーブル数の計算
     $TableNumber = 1;
-} else {
-    $TableNumber = $PeopleNumber / 6 + 1;
+} else if ($PeopleNumber <= 12) {
+    $TableNumber = 2;
+} else if ($PeopleNumber <= 18) {
+    $TableNumber = 3;
 }
+
 $uid = $_SESSION["uid"];
 
 $sql = "INSERT INTO tel_res(uid,res_datetime,people_number,table_number,res_number,reserve) VALUES ( $uid ,'$reserve_datetime', $PeopleNumber , $TableNumber , $res_number ,1);"; //予約を登録
-// if (!$uid) {
-//     exit("セッションタイムアウト" . $uid . "<button onclick=location.href='top.php'>TOPに戻る");
-// }
 $rs = $conn->query($sql);
-echo "<br>" . $sql . "<br><br>";
-echo $sql1 . "<br><br><br>";
 
 ?>
+
+<style>
+    .reserve_position {
+        width: 100%;
+        text-align: center;
+    }
+
+    .reserve_number {
+        border: 3px dotted black;
+        text-align: center;
+        font-size: 140%;
+    }
+
+    #btn_save {
+        margin-top: 3%;
+        font-size: 110%;
+
+    }
+</style>
 
 <head>
     <title>FARVAS</title>
@@ -60,11 +76,16 @@ echo $sql1 . "<br><br><br>";
 
     予約が完了いたしました。<br>
     <h2>注文内容</h2><br>
-    <?php
-    echo "<br>予約番号" . $res_number; //現在日付時間を表示
-    echo "<br>文字列時間" . $reserve_datetimest . "<br>時間" . $reserve_datetime;
-    ?>
-    <button onclick="location.href='top.php'">TOPに戻る
+    <div class="reserve_position">
+        <div class="reserve_number">
+            <?php
+            echo "<br>予約番号" . $res_number; //現在日付時間を表示
+            echo "<br>文字列時間" . $reserve_datetimest . "<br>時間" . $reserve_datetime;
+            ?>
+        </div>
+
+        <button class="btn_save" onclick="location.href='top.php'">TOPに戻る
+    </div>
 </body>
 
 </html>

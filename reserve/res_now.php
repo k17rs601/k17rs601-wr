@@ -15,11 +15,44 @@ session_start();
 
 <body>
     <style>
+        .box {
+            text-align: center;
+        }
+
         .box select {
             /* border:1px solid; */
+            padding-left: 5px;
             font-size: 20px;
-            width: 16em;
+            width: 18em;
             background-color: white;
+            text-align: center;
+        }
+
+        #mintext {
+            font-size: 80%;
+        }
+
+        .timetext {
+            font-size: 20px;
+            width: 18em;
+            background-color: white;
+            text-align: center;
+        }
+
+        .box#selecttext {
+            font-size: 16px;
+        }
+
+        .botm {
+            padding: 2px;
+            width: 9em;
+            font-size: 16px;
+            border: 3px inset black;
+        }
+
+        .button {
+            margin-top: 5%;
+            text-align: center;
         }
     </style>
     <div style="margin-top:30px"></div>
@@ -28,7 +61,7 @@ session_start();
     「今からご来店のご予約」を行います。<br>
     本日ご来店で現在の時刻より２時間後以降、または後日ご来店のお客様はTOPページの<a href="res_dtime.php">「日付時間指定のご予約」</a>からご予約ください。
     <h2>今からご来店のご予約</h2>
-    ・人数を選択してください<br>
+    <h3>・人数を選択してください</h3>
 
     <form action="res_now2.php" method="post">
         <!-- <input type="text" list="list" size="20px" style="text-align:right" readonly>
@@ -56,14 +89,14 @@ session_start();
                     <option value="13">１３〜１８名</option>
                 </optgroup>
             </select>
+            <br>
+            <a id="mintext"> --19名以上の人数のご予約はお店に直接ご予約ください。</a>
         </div>
-        <a> --19名以上の人数のご予約はお店に直接ご予約ください。<br>
-            --テーブルを複数ご利用される場合は
-        </a>
-        <br>
         <!-- </datalist>名<br> 
             <input type="reset" class="botm" value="リセット"> -->
-        <input type="submit" class="botm" value="登録する">
+        <div class="button">
+            <input type="submit" class="botm" value="登録する">
+        </div>
     </form>
 </body>
 

@@ -5,7 +5,7 @@
 <script type="text/javascript">
   //////////
   function addTF(str) {
-    document.res_number.res_number.value += str;
+    document.recepnumber.recenumber.value += str;
   }
 </script>
 
@@ -21,26 +21,117 @@
   <title>FARVAR</title>
 </head>
 
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+
+  }
+
+  .text1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 250%;
+  }
+
+  .text2 {
+    text-align: center;
+    font-size: 250%;
+  }
+
+  .textclass {
+    float: left;
+    margin-top: -25%;
+    margin-left: 6%;
+  }
+
+  .entertext {
+    border: 1px solid black;
+    float: left;
+    width: 55%;
+    height: 75px;
+    font-size: 450%;
+    text-align: right;
+  }
+
+  .btn {
+    text-align: right;
+    float: right;
+    width: 100%;
+    height: 100%;
+    font-size: 100%;
+    margin-top: 7%;
+    margin-right: 5%;
+  }
+
+  #btn1 {
+    border: 3px outset black;
+    margin-top: 5px;
+    width: 10%;
+    height: 100px;
+    font-size: 450%;
+  }
+
+  #btn2 {
+    border: 3px outset black;
+    width: 10%;
+    height: 73px;
+    font-size: 250%;
+  }
+
+  .back {}
+
+  #siteback {
+    position: absolute;
+    bottom: 0;
+    margin-left: 10%;
+    margin-bottom: 10%;
+    border: 3px inset rgb(0, 119, 255);
+    padding: 10px;
+    font-size: 250%;
+    background-color: rgba(21, 239, 255, 0.459);
+  }
+</style>
+
 <body>
-  予約番号を入力してください。
-  <form action="checkin.php" name="res_number" method="post">
-    <input type="text" name="res_number" maxlength="9999" Style="text-align:right;" readonly>
-    <a>番</a><br>
-    <div id="btn">
-      <input type="button" value="1" class="btn1" onClick="addTF(this.value)">
-      <input type="button" value="2" class="btn1" onClick="addTF(this.value)">
-      <input type="button" value="3" class="btn1" onClick="addTF(this.value)"><br>
-      <input type="button" value="4" class="btn2" onClick="addTF(this.value)">
-      <input type="button" value="5" class="btn2" onClick="addTF(this.value)">
-      <input type="button" value="6" class="btn2" onClick="addTF(this.value)"><br>
-      <input type="button" value="7" class="btn3" onClick="addTF(this.value)">
-      <input type="button" value="8" class="btn3" onClick="addTF(this.value)">
-      <input type="button" value="9" class="btn3" onClick="addTF(this.value)"><br>
-      <input type="button" value="0" class="btn4" onClick="addTF(this.value)">
-      <input type="reset" value="取消" class="btn5">
-      <input type="submit" value="OK" class="btn5">
+  <div class="text1">
+    <a>番号を入力してください。</a>
+  </div>
+
+  <form action="checkin.php" name="recepnumber" method="post">
+
+    <div class="btn">
+      <div class="col1">
+        <input type="button" value="1" id="btn1" onClick="addTF(this.value)">
+        <input type="button" value="2" id="btn1" onClick="addTF(this.value)">
+        <input type="button" value="3" id="btn1" onClick="addTF(this.value)"><br>
+      </div>
+      <div class="col2">
+        <input type="button" value="4" id="btn1" onClick="addTF(this.value)">
+        <input type="button" value="5" id="btn1" onClick="addTF(this.value)">
+        <input type="button" value="6" id="btn1" onClick="addTF(this.value)"><br>
+      </div>
+      <div class="col3">
+        <input type="button" value="7" id="btn1" onClick="addTF(this.value)">
+        <input type="button" value="8" id="btn1" onClick="addTF(this.value)">
+        <input type="button" value="9" id="btn1" onClick="addTF(this.value)"><br>
+      </div>
+      <div class="col4">
+        <input type="button" value="0" id="btn1" onClick="addTF(this.value)">
+        <input type="reset" value="取消" id="btn2">
+        <input type="submit" value="OK" id="btn2">
+      </div>
     </div>
+
+    <div class="textclass">
+      <input type="text" name="recenumber" maxlength="100" class="entertext" readonly>
+      <a class="text2">番</a><br>
+      <br>
+      <div class="back">
+        <input type="button" id="siteback" onclick="history.back()" value="前の画面に戻る">
+      </div>
+    </div>
+
   </form>
-  <br>
-  <input type="button" onclick="history.back()" value="前の画面に戻る">
 </body>

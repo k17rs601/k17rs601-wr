@@ -11,7 +11,7 @@ session_regenerate_id();
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="login.css">
   <title>FARVAS予約サイト</title>
-  <meta http-equiv="refresh" content="1; URL=">
+  <!-- <meta http-equiv="refresh" content="1; URL="> -->
 </head>
 
 <style>
@@ -34,14 +34,14 @@ session_regenerate_id();
 
   .sheet {
     background-color: white;
-    padding-top: -5px;
-    margin: 5px;
+    padding: 5px;
+    margin: 10px;
     border: 1px groove black;
     border-radius: 10px 10px 10px 10px;
   }
 
   h3 {
-    margin: 10px;
+    margin: 5px;
     margin-bottom: 0px;
     font-family: sans-serif;
     text-align: center;
@@ -54,42 +54,44 @@ session_regenerate_id();
   }
 
   h3#listtwo {
+    margin-bottom: 5px;
     border-color: #93deff;
     background-color: #93deff;
-    margin;
   }
 
   .border1 {
+
     background-color: white;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     line-height: 80px;
-    font-size: 30px;
+    font-size: 20px;
     border: 3px groove #f8b400;
     border-top: 0;
   }
 
   .border#bor1 {
-    font-size: 25;
+    font-size: 20px;
   }
 
   .border2 {
     background: white;
-    font-size: 25px;
+    font-size: 20px;
     border: 3px groove #f8b400;
     border-top: 0;
     padding: 7px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-bottom: 10px;
     line-height: 40px;
   }
 
   ul li,
   ol li {
+
     font-size: 20px;
     color: black;
-    border-left: solid 14px rgb(241, 157, 0);
+    border-left: 10px groove #93deff;
     background: whitesmoke;
     /*背景色 */
     margin-bottom: 5px;
@@ -97,10 +99,24 @@ session_regenerate_id();
     margin-left: 5px;
     margin-right: 5px;
     line-height: 1.5;
-    border-radius: 0 10px 10px 0;
+    border-radius: 5px 10px 10px 5px;
     /*右側の角だけ丸く*/
     padding: 0.5em;
     list-style-type: none !important;
+
+  }
+
+  .logout_button {
+    text-align: center;
+    width: 100%;
+  }
+
+  #logout {
+    margin-top: 1px;
+    margin-right: 2%;
+    width: 24%;
+    font-size: 110%;
+    border: 2px inset gray;
   }
 </style>
 
@@ -138,56 +154,63 @@ session_regenerate_id();
   }
 
   ////////////本文////////////
-  echo "<h1 style='text-align:center'>FARVAS予約サイト</h1>";
-  echo '<h4 style="text-align:right">ようこそ!!' . $_SESSION["uname"] . 'さん。<h4>';
-  echo "<hr id='start'>";
-  echo "<div class='sheet'>";
-  echo "<h3>>>>現在の順番の待ち組数<<< </h3>";
-  if ($row1["COUNT(res_number)"] == 0) {
-    echo '<div style="text-align:center" class="border1" id ="bor1">';
-    echo '現在お待ちのお客様はございません。';
-    echo '</div>';
-  } else {
-    echo '<div style="text-align:center" class="border1">';
-    echo $row1["COUNT(res_number)"] . '組';
-    echo '</div>';
-  }
-
+  //echo $sql;
   ?>
+  <h1 style='text-align:center'>FARVAS予約サイト</h1>
+  <h4 style="text-align:right">ようこそ!!
+    <?php echo $_SESSION["uname"]; ?> さん。<h4>
+      <hr id='start'>
+      <div class="sheet">
+        <h3>>>>現在の順番の待ち組数<<< </h3>
+            <?php
+            if ($row1["COUNT(res_number)"] == 0) {
+              echo '<div style="text-align:center" class="border1" id="bor1">';
+              echo '現在お待ちのお客様はございません。';
+              echo '</div>';
+            } else {
+              echo '<div style="text-align:center" class="border1">';
+              echo $row1["COUNT(res_number)"] . '組';
+              echo '</div>';
+            }
+            ?>
 
-  <h3>>>>お客様のご予約情報<<< </h3>
-      <?php
-      if (!$row) {
-        echo '<div style="text-align:center" class="border2">';
-        echo 'お客様のご予約情報はございません。<br>予約を行ってください。';
-        echo '</div>';
-      } else {
-        echo '<div style="text-align:center" class="border2">';
-        echo '番号：' . $userdate_number . "<br>予約日時：" . $userdate_datetime;
-        echo '</div></div>';
-      }
-      ?>
-      <div>
+
+            <h3>>>>お客様のご予約情報<<< </h3>
+                <?php
+                if ($row == null) {
+                  echo '<div style="text-align:center" class="border2">';
+                  echo 'お客様のご予約情報はございません。<br>予約を行ってください。';
+                  echo '</div>';
+                } else {
+                  echo '<div style="text-align:center" class="border2">';
+                  echo '番号：' . $userdate_number . "<br>予約日時：" . $userdate_datetime;
+                  echo '</div>';
+                }
+                ?>
+      </div>
+      <div class="sheet">
         <h3 id="listtwo">>>>予約はコチラから<<< </h3>
-            <ul style="text-align:left">
-              <?php
-              if (!$row) {
-                echo '<li><a href="res_now.php">今からご来店のご予約</a></li>';
-                echo '<li><a href="res_dtime.php">日付時間指定のご予約</a></li>';
-                //<!-- <li><a href="res3.php">Quick予約</a></li> -->
-              } else {
-                //   echo '<li><u>今からご来店のご予約</u>';
-                //   echo '<li><u>日付時間指定のご予約</u>';
-                // }
-                // if ($row) {
-                echo '<li><a href="clear.php">予約キャンセル</a></li>';
-              }
-              ?>
-            </ul>
+            <div calss="ul_style">
+              <ul style="text-align:left">
+                <?php
+                if ($row == null) {
+                  echo '<li><a href="res_now.php">今からご来店のご予約</a></li>';
+                  echo '<li><a href="res_dtime.php">日付時間指定のご予約</a></li>';
+                  //<!-- <li><a href="res3.php">Quick予約</a></li> -->
+                } else {
+                  //   echo '<li><u>今からご来店のご予約</u>';
+                  //   echo '<li><u>日付時間指定のご予約</u>';
+                  // }
+                  // if ($row) {
+                  echo '<li><a href="clear.php">予約キャンセル</a></li>';
+                }
+                ?>
+              </ul>
+            </div>
 
             <div>予約が既に存在する場合は、キャンセルするまで新たな予約を行えません。</div>
       </div>
-      <div style="text-align:center"><button onclick="location.href='./login.html'">TOPに戻る</div>
+      <div class="logout_button"><button onclick="location.href='./login.html'" id="logout">ログアウト</div>
 </body>
 
 </html>

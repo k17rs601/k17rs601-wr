@@ -14,9 +14,9 @@ $con = new mysqli('localhost', 'root', '', 'FARVAS');
 $con->set_charset('utf8');
 $date_res_clear = date("Y-m-d 00:00:00", strtotime($date));
 //SQL命令文
-$sql = "SELECT COUNT(resid) FROM `tel_res` WHERE receptionist >= 0 AND DATE(res_datetime) = '$date'";
+$sql = "SELECT COUNT(resid) FROM `tel_res` WHERE receptionist >= 0 AND DATE(res_datetime) = '$date' AND reserve = 1";
 $sql1 = "UPDATE tel_res SET receptionist = 2 WHERE receptionist = 3 AND res_datetime <= '$datetime' AND res_number > 999";
-$sql2 = "SELECT res_number , receptionist FROM `tel_res` WHERE DATE(res_datetime) = '$date' AND hold = 0 AND receptionist > 0 ORDER BY receptionist , res_datetime ASC;";
+$sql2 = "SELECT res_number , receptionist ,table_number  FROM `tel_res` WHERE DATE(res_datetime) = '$date' AND hold = 0 AND receptionist > 0 ORDER BY receptionist , res_datetime ASC;";
 $sql4 = "SELECT res_number FROM `tel_res` WHERE DATE(res_datetime) = '$date' AND hold = 1";
 $sql_res_clear = "UPDATE tel_res SET reserve = 0 WHERE DATE(res_datetime) < '$date_res_clear' AND reserve = 1";
 ///0<受付待ちの組数、
@@ -32,7 +32,7 @@ $rs1 = $con->query($sql1); ///1<予約日付、
 $rs2 = $con->query($sql2);
 $row2 = $rs2->fetch_assoc();
 
-if ($row2 != null) {
+if ($row2) {
   $fst_number = $row2["res_number"];
   $next_number = $row2["res_number"];
   $sql_update = "UPDATE `tel_res` SET receptionist = 1 WHERE DATE(res_datetime) = '$date' AND res_number = $fst_number;";
@@ -41,11 +41,44 @@ if ($row2 != null) {
     $rs3 = $con->query($sql_update);
   }
 }
-if ($row2 != null) {
-}
 
 $rs4 = $con->query($sql4);
 $row4 = $rs4->fetch_assoc(); ///保留状態の客チェック
+
+
+//空席時の案内処理
+if ($row2) {
+  $table_count = $row2['table_number'];
+  $tbl_sql = "SELECT COUNT(zaseki_state) FROM `tel_zaseki` WHERE zaseki_state = 0";
+  $rs_tbl = $con->query($tbl_sql);
+  $row_tbl = $rs_tbl->fetch_assoc();
+
+  if ($row_tbl) {
+    $t = $row_tbl["COUNT(zaseki_state)"];
+    if ($table_count <= $t) {
+
+      $select_zaseki_sql = "SELECT zaseki_number FROM `tel_zaseki` WHERE zaseki_state = 0;";
+      $rs_select_zaseki = $con->query($select_zaseki_sql);
+      $row_select_zaseki = $rs_select_zaseki->fetch_assoc();
+      $i = 0;
+      $s = 0;
+      while ($i < $table_count) {
+        echo "o";
+        $tabl = $row_select_zaseki['zaseki_number'];
+
+        $sql5 = "UPDATE `tel_zaseki` SET zaseki_state = 1 ,guide_number = $fst_number , guide_datetime = '$datetime' WHERE zaseki_number = $tabl;";
+        $rs5 = $con->query($sql5);
+
+        $row_select_zaseki = $rs_select_zaseki->fetch_assoc();
+        $i++;
+      }
+      //最初の案内を完了する。
+      $sql_fst_clear = "UPDATE `tel_res` SET guide = 1 , reserve = 0 ,receptionist = 0 WHERE res_number = $fst_number";
+      $rs_fst = $con->query($sql_fst_clear);
+    }
+  }
+}
+
 
 ?>
 
@@ -66,6 +99,63 @@ $row4 = $rs4->fetch_assoc(); ///保留状態の客チェック
   * {
     font-size: 30px;
   }
+
+  .nextguide_text {
+    margin-top: 2%;
+    margin-left: 2%;
+  }
+
+  .nextguide {
+    margin-top: 4%;
+    margin-left: 2%;
+    font-size: 170%;
+    text-align: center;
+  }
+
+  a#text_number {
+    font-size: 120%;
+  }
+
+  .table {
+    margin-top: 4%;
+    width: 73%
+  }
+
+  #href1 {
+    background-color: pink;
+    width: 45%;
+    text-align: center;
+    padding: 5%;
+    border: 4px solid black;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  #href2 {
+    background-color: lightblue;
+    width: 45%;
+    text-align: center;
+    padding: 5%;
+    padding-left: 0;
+    padding-right: 0;
+    border: 4px solid black;
+  }
+
+  #reservein {
+    font-size: 95%;
+  }
+
+  #reserveout {
+    font-size: 95%;
+  }
+
+  #taptext1 {
+    font-size: 300%;
+  }
+
+  #taptext2 {
+    font-size: 200%;
+  }
 </style>
 
 <body>
@@ -76,7 +166,12 @@ $row4 = $rs4->fetch_assoc(); ///保留状態の客チェック
         <th width="50%">保留中</th>
       </tr>
       <?php
-      for ($i = 1; $i < 11; $i++) {
+
+
+      // $sql_resereve = "UPDATE `tbl_res SET reserve = 0 WHERE "
+
+
+      for ($i = 1; $i < 13; $i++) {
         if (!$row2) {
           echo "<tr align='right'><td>" . "　" . "</td>";
         } else if ($row2 != null) {
@@ -90,41 +185,26 @@ $row4 = $rs4->fetch_assoc(); ///保留状態の客チェック
           $row4 = $rs4->fetch_assoc();
         }
       }
-      echo "</table></div>次の案内：";
-
-      if ($row["COUNT(resid)"] == 0 || $row == null) {
-        echo "現在順番待ちはございません。";
+      echo '</table></div><div class="nextguide_text">次の案内：';
+      if ($row["COUNT(resid)"] == 0 || !$row2) {
+        echo "現在順番待ちはございません。</div>";
       } else {
-        if ($row2 != null) {
-          echo $next_number . "番<br>";
-        } else {
-          echo "なし<br>";
-        }
-        echo "現在待ち数：" . $row["COUNT(resid)"] . "組";
+        echo "<a id ='text_number'>" . $next_number . "番</a><br></div>";
       }
+      echo '<div class ="nextguide">';
+      echo "現在待ち数：" . $row["COUNT(resid)"] . "組";
+      echo "</div>";
+
       ?>
       <table class="table">
         <tr>
-          <th>予約なしはこちら</th>
-          <th>予約済みはこちら</th>
+          <th id="reserveout">予約なしはこちら</th>
+          <th id="reservein">予約済み・保留中はこちら</th>
         </tr>
         <tr>
-          <td><a href="receptionist.html">受付</a></td>
-          <td><a href="checkin.html">チェックインする</a>
+          <td id="href1"><a href="receptionist.html" id="taptext1">受付</a></td>
+          <td id="href2"><a href="checkin.html" id="taptext2">チェックイン</a>
           </td>
         </tr>
       </table>
-      <!-- <br>
-      予約なしはこちら
-      <a href="receptionist.html">受付</a>
-
-      <br>
-      予約済みはこちら
-      <a href="checkin.html">チェックインする</a>
-      <br> -->
-
-      <!-- 保留中のお客様はこちら
-  <a href="checkin.php">チェックインする</a>
-  <br> -->
-
 </body>
