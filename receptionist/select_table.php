@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="register.css">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="refresh" content="120; URL=top.php">
     <title>座席選択</title>
 </head>
 
@@ -21,6 +22,7 @@
         margin: 0;
         padding: 0;
     }
+
 
     input.text {
         width: 70%;
@@ -46,6 +48,7 @@
     }
 
     div.select {
+        margin-top: 40px;
         margin-right: 3%;
         text-align: center;
         font-size: 300%;
@@ -54,66 +57,61 @@
         height: 15%;
     }
 
-    a#text {
-        width: 25%;
-        height: 50px;
-    }
-
     .column {
-        margin-top: 10px;
+        margin-top: 50%;
         text-align: center;
-        font-size: 50%;
         width: 100%;
         height: 100%;
     }
 
-    #btn {
-        width: 30%;
-        padding-top: 1%;
-        font-size: 250%;
-        text-align: center;
+    .table_select {
+        font-size: 100%;
     }
 
-    #btn2 {
+    .submit_button {
+        font-size: 100%;
+    }
+
+    .select1 {
+        font-size: 75%;
         width: 30%;
-        padding-top: 1%;
-        font-size: 150%;
         text-align: center;
+        border: 3px outset black;
     }
 </style>
 
+<?php
+$con = new mysqli("localhost", "root", "", "FARVAS");
+$con->set_charset('utf8');
+session_start();
+$res_number = $_SESSION["res_number"];
+$res_table = $_SESSION["res_table"];
+?>
+
 <body>
     <div class="select">
-        <a>座席番号</a>
-        <form action="a.php" name="zaseki" method="post">
-            <input type="text" name="zaseki_number" maxlength="16" class="text" readonly>
-            <a id="text">番</a>
+        <a id="zaseki">座席番号</a>
+        <form action="ok.php" name="zaseki" method="post">
+            <select class="select1" type="text" name="zaseki_number" maxlength="2" readonly>
+
+                <?php
+                $sql = "SELECT zaseki_number FROM tel_zaseki WHERE zaseki_state = 0";
+                $rs = $con->query($sql);
+                $row = $rs->fetch_assoc();
+                while ($row) {
+                    echo '<option value="' . $row["zaseki_number"] . '">' . $row["zaseki_number"] . '</option>';
+                    $row = $rs->fetch_assoc();
+                }
+                ?>
+
+            </select>
             <div class="column">
-                <div class="col1">
-                    <input type="button" value="1" id="btn" onClick="add(this.value)">
-                    <input type="button" value="2" id="btn" onClick="add(this.value)">
-                    <input type="button" value="3" id="btn" onClick="add(this.value)"><br>
-                </div>
-                <div class=col2>
-                    <input type="button" value="4" id="btn" onClick="add(this.value)">
-                    <input type="button" value="5" id="btn" onClick="add(this.value)">
-                    <input type="button" value="6" id="btn" onClick="add(this.value)"><br>
-                </div>
-                <div class="col3">
-                    <input type="button" value="7" id="btn" onClick="add(this.value)">
-                    <input type="button" value="8" id="btn" onClick="add(this.value)">
-                    <input type="button" value="9" id="btn" onClick="add(this.value)"><br>
-                </div>
-                <div class="col4">
-                    <input type="button" value="0" id="btn" onClick="add(this.value)">
-                    <input type="reset" value="取消" id="btn2">
-                    <input type="submit" value="OK" id="btn2">
-                </div>
+                <input type="submit" class="submit_button" value="登録する">
             </div>
         </form>
 
     </div>
-    <a id="title">お好きな座席を選択してください。</a>
+    <a id="title">お好きな座席番号を選択してください。</a>
     <div class="image">
         <img src="zaseki_guest.png" width="60%">
     </div>

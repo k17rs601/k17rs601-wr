@@ -14,3 +14,6 @@ http://localhost/k17rs601/receptionist/select_table.php
 
 
 http://localhost/k17rs601/guidance/guide.php
+
+ok 初期化用
+UPDATE `tel_zaseki` SET `zaseki_state`=0,`guide_datetime`=null,`guide_number`=null

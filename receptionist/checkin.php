@@ -11,6 +11,7 @@ session_start();
 
 
 $res_number = $_POST["recenumber"];
+$_SESSION['res_number'] = $res_number;
 $sql_wait = "SELECT COUNT(resid) FROM `tel_res` WHERE receptionist > 0 AND DATE(res_datetime) = '$date' AND guide = 0 AND hold = 0 AND res_number != $res_number";
 $rs = $con->query($sql_wait);
 $row = $rs->fetch_assoc();
@@ -22,7 +23,6 @@ $zaseki_count = $row["COUNT(zaseki_number)"];
 $sql = "SELECT table_number FROM `tel_res` WHERE res_number = $res_number AND DATE(res_datetime) = '$date'";
 $rs = $con->query($sql);
 $row = $rs->fetch_assoc();
-echo $sql;
 $user_table_number = $row['table_number'];
 //現在の待ち数 wait_num
 
@@ -99,6 +99,9 @@ $user_table_number = $row['table_number'];
     //空席数==zaseki_count
     //予約席数==user_table_number
 
+    $sql11 = "UPDATE `tel_zaseki` SET guide_number = $res_number ,guide_datetime = '$date' WHERE guide_number = null";
+    $_SESSION["res_table"] =  $user_table_number;
+
     if ($wait_num > 0) { //空き席がある場合の処理
         echo "<h4>受付が完了しました。</h4>";
         echo "<h3>現在案内可能なお席がございません。下記の番号でお待ち下さい。</h3>";
@@ -110,13 +113,13 @@ $user_table_number = $row['table_number'];
     } else if ($zaseki_count > $user_table_number) {
         echo "<h4>受付が完了しました。</h4>";
         echo "<h3>空席が複数存在するので座席選択画面に移ります。</h3>";
-        $sql = "UPDATE `tel_zaseki` SET guide_number = $res_number ,guide_datetime = '$date' WHERE guide_number == null";
-        $rs = $con->query($sql);
+        echo '<button onclick="location.href=' . "'select_table.php'" . '">座席選択画面へ</button>';
+        exit();
     }
+    session_destroy();
 
     ?>
     <button onclick="location.href='top.php'">TOPに戻る</button>
-    <a href="top.php">TOPに戻る</a>
 
 </body>
 

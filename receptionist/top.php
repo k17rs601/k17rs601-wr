@@ -63,7 +63,6 @@ if ($row2) {
       $i = 0;
       $s = 0;
       while ($i < $table_count) {
-        echo "o";
         $tabl = $row_select_zaseki['zaseki_number'];
 
         $sql5 = "UPDATE `tel_zaseki` SET zaseki_state = 1 ,guide_number = $fst_number , guide_datetime = '$datetime' WHERE zaseki_number = $tabl;";
