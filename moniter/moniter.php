@@ -30,14 +30,15 @@
     }
 
     h1 {
-        font-size: 2000%;
+        font-size: 1500%;
         text-align: center;
-        margin-top: -5%;
-        margin-bottom: -5%;
+        padding-top: -5%;
+        padding-bottom: -5%;
+        border: 3px solid black;
     }
 
     .num {
-        border: 5px isset black;
+        border: 5px inset black;
     }
 
     h3 {

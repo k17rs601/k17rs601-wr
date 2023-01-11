@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="register.css">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="refresh" content="10; URL=top.php">
+    <meta http-equiv="refresh" content="20; URL=top.php">
 </head>
 
 <?php
@@ -46,5 +46,6 @@ $rs = $con->query($sql);
         <?php
         echo "<h3>$zaseki_number</h3> "
         ?>
+        <button onclick="location.href='top.php'">TOPに戻る</button>
     </div>
 </body>

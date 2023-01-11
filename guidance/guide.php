@@ -23,13 +23,6 @@
         padding: 0;
     }
 
-    input.text {
-        width: 70%;
-        height: 50px;
-        font-size: 50px;
-        text-align: right;
-    }
-
     img {
         margin-left: 1%;
         border: 1px double black;
@@ -47,7 +40,8 @@
     }
 
     div.select {
-        margin-right: 3%;
+        margin-top: 1%;
+        margin-right: 10%;
         text-align: center;
         font-size: 300%;
         float: right;
@@ -55,31 +49,25 @@
         height: 15%;
     }
 
-    a#text {
-        width: 25%;
-        height: 50px;
-    }
 
     .column {
-        margin-top: 10px;
-        text-align: center;
-        font-size: 50%;
-        width: 100%;
-        height: 100%;
+        float: right;
+        width: 40%;
     }
 
-    #btn {
-        width: 30%;
-        padding-top: 1%;
-        font-size: 250%;
-        text-align: center;
+    .table_select {
+        float: right;
+        width: 40%;
     }
 
-    #btn2 {
-        width: 30%;
-        padding-top: 1%;
-        font-size: 150%;
-        text-align: center;
+    .decide {
+        font-size: 80%;
+        width: 80%;
+    }
+
+    .select1 {
+        font-size: 80%;
+        width: 80%;
     }
 </style>
 
@@ -90,24 +78,25 @@ $con->set_charset('utf8');
 
 <body>
     <div class="select">
-        <a>座席番号</a>
         <form action="guide_check.php" name="zaseki" method="post">
-            <div class="table_select">
-                <select class="select1" type="text" name="zaseki_number" maxlength="2" readonly>
-                    <?php
-                    $sql = "SELECT zaseki_number FROM tel_zaseki WHERE zaseki_state = 1";
-                    $rs = $con->query($sql);
+            <?php
+
+            $sql = "SELECT zaseki_number FROM tel_zaseki WHERE zaseki_state = 1";
+            $rs = $con->query($sql);
+            $row = $rs->fetch_assoc();
+            if ($row) {
+                echo '<div class="column"><input type="submit" class="decide" value="退席"></div>';
+                echo '<div class="table_select">';
+                echo '<select class="select1" type="text" name="zaseki_number" maxlength="15" readonly>';
+                while ($row) {
+                    echo '<option value="' . $row["zaseki_number"] . '">' . $row["zaseki_number"] . '</option>';
                     $row = $rs->fetch_assoc();
-                    while ($row) {
-                        echo '<option value="1">' . $row["zaseki_number"] . '</option>';
-                        $row = $rs->fetch_assoc();
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="column">
-                <input type="submit" class="botm" value="登録する">
-            </div>
+                }
+                echo '</select></div>';
+            } else {
+                echo '</select></div>';
+            }
+            ?>
         </form>
 
     </div>

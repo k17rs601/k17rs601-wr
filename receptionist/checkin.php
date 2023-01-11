@@ -31,7 +31,7 @@ $user_table_number = $row['table_number'];
 <head>
     <?php
     if ($wait_num > 0) {
-        echo ' <meta http-equiv="refresh" content="10; URL=top.php">';
+        echo ' <meta http-equiv="refresh" content="20; URL=top.php">';
     } else if ($zaseki_count > $user_table_number) {
         echo ' <meta http-equiv="refresh" content="10; URL=select_table.php">';
     }
@@ -49,6 +49,23 @@ $user_table_number = $row['table_number'];
 
     .error {
         font-size: 200%;
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 200%;
+    }
+
+    h3 {
+        font-size: 200%;
+    }
+
+    h2 {
+        font-size: 500%;
+    }
+
+    .all {
+        width: 100%;
         text-align: center;
     }
 </style>
@@ -101,7 +118,7 @@ $user_table_number = $row['table_number'];
 
     $sql11 = "UPDATE `tel_zaseki` SET guide_number = $res_number ,guide_datetime = '$date' WHERE guide_number = null";
     $_SESSION["res_table"] =  $user_table_number;
-
+    echo "<div class ='all'>";
     if ($wait_num > 0) { //空き席がある場合の処理
         echo "<h4>受付が完了しました。</h4>";
         echo "<h3>現在案内可能なお席がございません。下記の番号でお待ち下さい。</h3>";
@@ -114,13 +131,14 @@ $user_table_number = $row['table_number'];
         echo "<h4>受付が完了しました。</h4>";
         echo "<h3>空席が複数存在するので座席選択画面に移ります。</h3>";
         echo '<button onclick="location.href=' . "'select_table.php'" . '">座席選択画面へ</button>';
+        echo "</div>";
         exit();
     }
     session_destroy();
 
     ?>
     <button onclick="location.href='top.php'">TOPに戻る</button>
-
+    </div>
 </body>
 
 </html>

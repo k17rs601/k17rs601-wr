@@ -115,7 +115,7 @@ session_start();
 
         <h3>ご来店予定時間</h3>
         <div class="box">
-            <input type="time" class="timetext" name="reserve_time" min="7:00:00" max="23:00:00" required />
+            <input type="time" class="timetext" name="reserve_time" min="07:00:00" max="23:00:00" required />
         </div>
 
 

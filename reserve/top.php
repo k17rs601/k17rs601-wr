@@ -147,7 +147,7 @@ session_regenerate_id();
   $row1 = $rs1->fetch_assoc();
   $rs_userdate = $conn->query($sql_res_userdate);
   $row_userdate = $rs_userdate->fetch_assoc();
-  if ($row_userdate != null) {
+  if ($row_userdate) {
     $userdate_datetime1 = $row_userdate["res_datetime"];
     $userdate_datetime = date("m月d日 H時i分", strtotime($userdate_datetime1));
     $userdate_number = $row_userdate["res_number"];
