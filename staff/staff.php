@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="register.css">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="refresh" content="60; URL=guide.php">
+    <meta http-equiv="refresh" content="60; URL=staff.php">
     <title>座席選択</title>
 </head>
 

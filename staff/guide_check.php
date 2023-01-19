@@ -15,5 +15,5 @@ $con = new mysqli("localhost", "root", "", "FARVAS"); //MySQLサーバへ接続
 $con->set_charset('utf8'); //データベースとの通信をUTF8で行う。
 $sql = "UPDATE `tel_zaseki` SET zaseki_state = 0 , guide_datetime = null, guide_number = null WHERE zaseki_number = $zaseki";
 $rs = $con->query($sql);
-header("Location:guide.php");
+header("Location:staff.php");
 ?>

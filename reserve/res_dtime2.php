@@ -79,8 +79,8 @@ $rs = $conn->query($sql);
     <div class="reserve_position">
         <div class="reserve_number">
             <?php
-            echo "<br>予約番号" . $res_number; //現在日付時間を表示
-            echo "<br>文字列時間" . $reserve_datetimest . "<br>時間" . $reserve_datetime;
+            echo "<br>予約番号：" . $res_number; //現在日付時間を表示
+            echo "<br>予約時間：" . $reserve_datetimest;
             ?>
         </div>
 
